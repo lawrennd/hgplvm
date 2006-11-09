@@ -13,6 +13,7 @@ function hierarchicalLatentSpaceHandler(src, eventdata, action, visualiseNodes)
 % 
 % COPYRIGHT : Andrew Moore, 2006
 
+% HGPLVM
 
 %visualiseInfo contains the plot, and is global.
 
