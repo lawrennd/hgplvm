@@ -63,7 +63,7 @@ set(figLatent, 'WindowButtonDownFcn', {@hierarchicalLatentSpaceHandler, 'click',
         visualiseInfo(nodeIndex).latentHandle = line(0, 0, 'markersize', 20, 'color', ...
             [0 0 0], 'marker', '.', 'visible', 'on', 'erasemode', 'xor');
         %visualiseInfo(nodeIndex).visualiseFunction = str2func([visualiseNodes(nodeIndex).subskel.type 'Visualise']);
-        visualiseInfo(nodeIndex).visualiseFunction = str2func('acclaimVisualise');
+        visualiseInfo(nodeIndex).visualiseFunction = str2func('skelVisualise');
         
         % Set up the X limits and Y limits of the plot
         xLim = [min(model.X(:, 1)) max(model.X(:, 1))];
