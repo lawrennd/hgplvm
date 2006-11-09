@@ -1,8 +1,19 @@
-function hierarchialLatentSpaceHandler(src, eventdata, action, visualiseNodes)
-%Handler for mouse events on the latent space axes.  The UserData parameter
-%of the CurrentAxes that has received the mouse event refers to a
-%visualiseInfo structure containing the related skeleton data.
-%visualiseNodes contains the model and skeleton info, and is passed in.
+function hierarchicalLatentSpaceHandler(src, eventdata, action, visualiseNodes)
+
+% HIERARCHICALLATENTSPACEHANDLER Event handler for the HGPLVM latent space.
+% FORMAT
+% DESC Handler for mouse events on the latent space axes.  The
+% UserData parameter of the CurrentAxes that has received the mouse
+% event refers to a visualiseInfo structure containing the related
+% skeleton data.
+% ARG src : 
+% ARG eventData :
+% ARG action : The mouse action, 'click' or 'move'.
+% ARG visualiseNodes : contains the model and skeleton info, and is passed in.
+% 
+% COPYRIGHT : Andrew Moore, 2006
+
+
 %visualiseInfo contains the plot, and is global.
 
 

@@ -1,5 +1,16 @@
 function visualiseNodesData = demSubskelsH(datasetName)
 
+% DEMSUBSKELSH Run a given data set in the hierarchical GP-LVM.
+% FORMAT
+% DESC Runs a given data set with the hierarchical GP-LVM. 
+% ARG datasetName : the name of the data set to run.
+% RETURN visualiseNodesData : the data structure needed for
+% visualisation.
+% 
+% COPYRIGHT : Andrew Moore, 2006
+%
+
+% HGPLVM 
 if nargin < 1
     datasetName = 'wholeSkel';
 end

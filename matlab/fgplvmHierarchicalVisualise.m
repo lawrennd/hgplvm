@@ -1,6 +1,6 @@
 function fgplvmHierarchicalVisualise(visualiseNodes)
 
-% FGPLVMHIERARCHIALVISUALISE Visualise the manifold.
+% FGPLVMHIERARCHICALVISUALISE Visualise the manifold.
 % FORMAT
 % DESC Produces the main plot containing the subplot hierarchy of latent spaces
 % for all models in visualiseNodes. The main output graph (for the latent
