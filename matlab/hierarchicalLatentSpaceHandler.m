@@ -102,13 +102,13 @@ end
 
     %Given latent points x and y, return expected data points and variance
     function [mu, sigma] = getDataPoints(x, y, visualiseInfo)
-    fhandle = str2func([visualiseInfo.model.type 'PosteriorMeanVar']);
-    [mu, sigma] = fhandle(visualiseInfo.model, [x y]);
-    if isfield(visualiseInfo.model, 'noise')
-        Y = noiseOut(visualiseInfo.model.noise, mu, varsigma);
-    else
-        Y = mu;
-    end
+        fhandle = str2func([visualiseInfo.model.type 'PosteriorMeanVar']);
+        [mu, sigma] = fhandle(visualiseInfo.model, [x y]);
+        if isfield(visualiseInfo.model, 'noise')
+            Y = noiseOut(visualiseInfo.model.noise, mu, varsigma);
+        else
+            Y = mu;
+        end
     end
 
     %Updates the visualisation given the latent coordinates of the current node

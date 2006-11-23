@@ -1,11 +1,11 @@
 % HGPLVMTOOLBOXES Load in the relevant toolboxes for hgplvm.
 
-importLatest('fgplvm');
-importLatest('netlab');
-importLatest('mocap');
-importLatest('ndlutil');
-importLatest('prior');
-importLatest('mltools');
-importLatest('optimi');
-importLatest('datasets');
-importLatest('kern');
+importTool('fgplvm');
+importTool('netlab');
+importTool('mocap');
+importTool('ndlutil');
+importTool('prior');
+importTool('mltools');
+importTool('optimi');
+importTool('datasets');
+importTool('kern');
