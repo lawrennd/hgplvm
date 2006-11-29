@@ -1,4 +1,4 @@
-function fgplvmHierarchicalVisualise(visualiseNodes)
+function fgplvmHierarchicalVisualise(visualiseNodes, dependencyInfo)
 
 % FGPLVMHIERARCHICALVISUALISE Visualise the manifold.
 % FORMAT
@@ -23,7 +23,12 @@ function fgplvmHierarchicalVisualise(visualiseNodes)
 % seperate entity. The element visualiseInfo(x) corresponds to
 % visualiseNodes(x).
 
-global visualiseInfo
+global visualiseInfo dependencyVisData
+
+if nargin < 2
+    dependencyInfo = [];
+end
+dependencyVisData = dependencyInfo;
 %visualiseInfo = zeros(size(visualiseNodes, 1));
 
 
@@ -35,10 +40,11 @@ visualise(1);
 
 set(figLatent, 'WindowButtonMotionFcn', {@hierarchicalLatentSpaceHandler, 'move', visualiseNodes});
 set(figLatent, 'WindowButtonDownFcn', {@hierarchicalLatentSpaceHandler, 'click', visualiseNodes});
+dummyVar = 0;
 
     function visualise(nodeIndex)
         model = visualiseNodes(nodeIndex).model;
-        visualiseModify = 'skelModify';
+        visualiseModify = 'skelModifyHierarchical';
         visualiseInfo(nodeIndex).plotAxes = lvmHierarchicalScatterPlot(model, visualiseNodes(nodeIndex).labels);
         set(visualiseInfo(nodeIndex).plotAxes, 'UserData', nodeIndex);
         set(visualiseInfo(nodeIndex).plotAxes, 'Position', [plotCoords(nodeIndex, 1), ...
@@ -63,7 +69,7 @@ set(figLatent, 'WindowButtonDownFcn', {@hierarchicalLatentSpaceHandler, 'click',
         visualiseInfo(nodeIndex).latentHandle = line(0, 0, 'markersize', 20, 'color', ...
             [0 0 0], 'marker', '.', 'visible', 'on', 'erasemode', 'xor');
         %visualiseInfo(nodeIndex).visualiseFunction = str2func([visualiseNodes(nodeIndex).subskel.type 'Visualise']);
-        visualiseInfo(nodeIndex).visualiseFunction = str2func('skelVisualise');
+        visualiseInfo(nodeIndex).visualiseFunction = str2func('skelVisualiseHierarchical');
         
         % Set up the X limits and Y limits of the plot
         xLim = [min(model.X(:, 1)) max(model.X(:, 1))];
@@ -105,7 +111,7 @@ set(figLatent, 'WindowButtonDownFcn', {@hierarchicalLatentSpaceHandler, 'click',
         %only plot leaf node subskels as they are the only nodes that
         %contain skel information.
         if (~isempty(visualiseNodes(nodeIndex).subskel))
-            visualiseInfo(nodeIndex).visHandle = plotSubskel(visualiseInfo(nodeIndex),...
+            visualiseInfo(nodeIndex).visHandle = plotSubskel(nodeIndex,...
                 visualiseNodes(nodeIndex).model, visualiseNodes(nodeIndex).subskel, visualiseNodes(nodeIndex).padding);
         end
         

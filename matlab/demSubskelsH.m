@@ -1,4 +1,4 @@
-function visualiseNodesData = demSubskelsH(skelFile, animFile)
+function [visualiseNodesData, dependencyVisData] = demSubskelsH(skelFile, animFile)
 
 % DEMSUBSKELSH Run a given data set in the hierarchical GP-LVM.
 % FORMAT
@@ -24,14 +24,20 @@ if ~exist(animFile)
     error(sprintf('Could not find animation data file %s', animFile));
 end
 
-%Load in the walk1 skeleton and motion capture, then break up into sub
+%global data structure for dependencies between same joints in different
+%nodes.
+dependencyVisData = [];
+
+%Load in the skeleton and motion capture, then break up into sub
 %skels and learn models on each sub skel.
 skel = acclaimReadSkel(skelFile);
 [channels, skel] = acclaimLoadChannels(animFile, skel);
 
 visualiseNodes(1).name = 'skeleton';
 visualiseNodes(1).parent = [];
-visualiseNodes(1).children = [2, 3, 4];
+%define the abdomen as the first child as its position will affect the
+%upper body (hack for now).
+visualiseNodes(1).children = [3, 2, 4];
 visualiseNodes(1).model = [];
 
 visualiseNodes(2).name = 'upper_body';
@@ -92,10 +98,36 @@ visualiseNodes(9).model = [];
     'root', channels, {'rhipjoint'});
 visualiseNodes(9).subchans(:, [1:3]) = 0;
 
+%set up dependencies
+setDependency('thorax', 3); %abdomen controls the thorax.
+
 %recursively learn the models in the hierarchy, start with leaf models,
 %then composite models will learned on the latent values of the leaves.
 modelOptions = fgplvmOptions('ftc');
 modelLatentDim = 2;
 visualiseNodesData = hierarchicalModelLearner(visualiseNodes, modelOptions, modelLatentDim);
+
+    function setDependency(jointName, masterNodeIndex)
+        ind = size(dependencyVisData, 1);
+        dependencyVisData(ind+1).xyz = [];
+        dependencyVisData(ind+1).rot = [];
+        dependencyVisData(ind+1).name = jointName;
+        dependencyVisData(ind+1).masterNodeIndex = masterNodeIndex;
+        dependencyVisData(ind+1).dependents = [];
+        %error test
+        skelReverseLookup(visualiseNodes(masterNodeIndex).subskel, jointName);
+        for i = 1:length(visualiseNodes)
+            if (~isempty(visualiseNodes(i).subskel))
+                for j = 1:length(visualiseNodes(i).subskel.tree)
+                    if strcmp(visualiseNodes(i).subskel.tree(j).name, jointName) && ...
+                            i ~= masterNodeIndex
+                        dependencyVisData(ind+1).dependents = [ ...
+                            dependencyVisData(ind+1).dependents, i];
+                    end
+                end
+            end
+        end
+                
+    end
 
 end

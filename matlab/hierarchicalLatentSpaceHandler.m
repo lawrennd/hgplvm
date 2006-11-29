@@ -18,7 +18,7 @@ function hierarchicalLatentSpaceHandler(src, eventdata, action, visualiseNodes)
 %visualiseInfo contains the plot, and is global.
 
 
-global visualiseInfo
+global visualiseInfo dependencyVisData
 %check this has been called from a valid axes (one where there is a defined
 %UserData).
 
@@ -120,6 +120,21 @@ end
         visualiseInfo(nodeIndex).latentPos=[coordX, coordY];
         set(visualiseInfo(nodeIndex).latentHandle, 'xdata', coordX, 'ydata', coordY);
         Y = mu;
+        
+        %update any dependents
+        for i = 1:length(dependencyVisData)
+            if nodeIndex == dependencyVisData(i).masterNodeIndex
+                for j = 1:length(dependencyVisData(i).dependents)
+                    depNodeIndex = dependencyVisData(i).dependents(j);
+                    if ~isempty(visualiseInfo(depNodeIndex).latentPos)
+                        updateVisualisation(depNodeIndex, visualiseInfo(depNodeIndex).latentPos(1), ...
+                            visualiseInfo(depNodeIndex).latentPos(2));
+                    end
+                end
+            end
+        end
+                        
+        
         nodeChildren = visualiseNodes(nodeIndex).children;
         if (length(nodeChildren) > 0)
             %mu should be of length 2*numChildren (2 coords per
@@ -147,7 +162,7 @@ end
             %end
         else
             visualiseInfo(nodeIndex).visualiseModify(visualiseInfo(nodeIndex).visHandle, ...
-                Y, visualiseNodes(nodeIndex).subskel, visualiseNodes(nodeIndex).padding);
+                Y, visualiseNodes(nodeIndex).subskel, nodeIndex, visualiseNodes(nodeIndex).padding);
             %visualiseInfo(axesIndex).latentPos=[x, y];
         end
         
