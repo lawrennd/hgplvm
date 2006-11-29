@@ -1,6 +1,6 @@
 function handle = skelVisualiseHierarchical(channels, skel, visIndex, padding)
 
-% SKELVISUALISE For updating a skel representation of 3-D data.
+% SKELVISUALISEHIERARCHICAL For updating a skel representation of 3-D data.
 
 % HGPLVM
 

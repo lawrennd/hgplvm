@@ -1,6 +1,6 @@
 function xyz = acclaim2xyzHierarchical(skel, channels, visIndex)
 
-% SKEL2XYZHIERARCHICAL Compute XYZ values given skeleton structure and channels.
+% ACCLAIM2XYZHIERARCHICAL Compute XYZ values given skeleton structure and channels.
 % FORMAT
 % DESC Converts a series of joint angles (channel data) into xyz
 % coordinates for the given skeleton.
@@ -10,7 +10,7 @@ function xyz = acclaim2xyzHierarchical(skel, channels, visIndex)
 % RETURN xyz : the data structure containing the xyz value and rotation
 % matrix for each joint in the skeleton.
 % 
-% COPYRIGHT : Andrew Moore, 2006
+% COPYRIGHT : Andrew J. Moore, 2006
 %
 % HGPLVM
 

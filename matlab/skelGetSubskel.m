@@ -1,16 +1,31 @@
 function [subskel, subchannels] = skelGetSubskel(skel, jointName, channels, children, stoplist)
-%skelGetSubskel(skel, jointName, channels, children, stoplist)
-%skel       - Original skeleton to take a subskel from.
-%jointName  - Name of the joint from skel which will be the root of the new
-%             subskel.  
-%channels   - Channels of an animation for the whole skel. This data will 
-%             be stripped down to just those channels corresponding to the
-%             new subskel. 
-%children   - Cell array containing the names of joints/bones below jointName which are to be
-%             included in the subskel (omitting this will add all children of jointName).
-%stoplist   - Cell array containing the names of joints/bones.  If any
-%             joint is explored which has a name on the stoplist, then this
-%             joint and its child joints are not added to the new subskel.
+
+% SKELGETSUBSKEL Gets a sub-skeleton from a larger skeleton.
+% FORMAT
+% DESC gets a sub-skeleton from a larger skeleton given the
+% original skeleton, the root of the new skeleton and the joints
+% from the root to be included in the sub-skeleton.
+% ARG skel : Original skeleton to take a subskel from.
+% ARG jointName : Name of the joint from skel which will be the
+% root of the new subskel.  
+% ARG channels : Channels of an animation for the whole skel. This data will 
+% be stripped down to just those channels corresponding to the new
+% subskel. 
+% ARG children : Cell array containing the names of joints/bones
+% below jointName which are to be included in the subskel (omitting this will add all children of jointName).
+% ARG stoplist : Cell array containing the names of joints/bones.  If any
+% joint is explored which has a name on the stoplist, then this
+% joint and its child joints are not added to the new subskel.
+% RETURN subkel : the sub-skeleton as specificed by the given
+% arguments.
+% RETURN subchannels : the relevant channels associated with the
+% sub-skeleton.
+%
+% COPYRIGHT : Andrew J. Moore, 2006
+% 
+% SEEALSO : skelReverseLookup
+
+% HGPLVM
 
 IND_ROOT = 1; %assume the index of a root node is always 1.
 

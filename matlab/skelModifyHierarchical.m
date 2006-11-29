@@ -1,6 +1,7 @@
 function skelModifyHierarchical(handle, channels, skel, visIndex, padding)
 
-% SKELMODIFY Helper code for visualisation of skel data.
+% SKELMODIFYHIERARCHICAL Helper code for visualisation of skel data.
+
 
 % HGPLVM
 
