@@ -12,8 +12,6 @@ function visualiseNodes = hierarchicalModelLearner(visualiseNodes, modelOptions,
 %
 % COPYRIGHT : Andrew Moore, 2006
 
-% HGPLVM
-
 if nargin < 3
     modelLatentDim = 2;
 end
@@ -23,8 +21,8 @@ end
 
 learnModels();
 
-    %Recursive function to traverse the hierarchy from bottom up, learning
-    %a GPLVM at each node.
+%Recursive function to traverse the hierarchy from bottom up, learning
+%a GPLVM at each node.
     function learnModels(nodeIndex)
         if nargin < 1
             nodeIndex = 1;

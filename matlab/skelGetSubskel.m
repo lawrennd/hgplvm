@@ -25,7 +25,6 @@ function [subskel, subchannels] = skelGetSubskel(skel, jointName, channels, chil
 % 
 % SEEALSO : skelReverseLookup
 
-% HGPLVM
 
 IND_ROOT = 1; %assume the index of a root node is always 1.
 

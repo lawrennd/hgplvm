@@ -9,7 +9,7 @@ function [ax, data] = lvmHierarchicalScatterPlot(model, YLbls);
 % RETURN ax : the axes where the plot is stored.
 % RETURN handles : the handles to the plotted ponts.
 %
-% COPYRIGHT : Andrew Moore, 2006
+% COPYRIGHT : Andrew J. Moore, 2006
 %
 % SEEALSO : lvmScatterPlot
 
@@ -21,8 +21,8 @@ else
   symbol = getSymbols(size(YLbls,2));
 end
 
-x1 = linspace(min(model.X(:, 1))*1.1, max(model.X(:, 1))*1.1, 150);
-x2 = linspace(min(model.X(:, 2))*1.1, max(model.X(:, 2))*1.1, 150);
+x1 = linspace(min(model.X(:, 1))*1.2, max(model.X(:, 1))*1.2, 40);
+x2 = linspace(min(model.X(:, 2))*1.2, max(model.X(:, 2))*1.2, 40);
 [X1, X2] = meshgrid(x1, x2);
 XTest = [X1(:), X2(:)];
 

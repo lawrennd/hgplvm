@@ -111,7 +111,7 @@ dummyVar = 0;
         %only plot leaf node subskels as they are the only nodes that
         %contain skel information.
         if (~isempty(visualiseNodes(nodeIndex).subskel))
-            visualiseInfo(nodeIndex).visHandle = plotSubskel(nodeIndex,...
+            visualiseInfo(nodeIndex).visHandle = plotSubSkel(nodeIndex,...
                 visualiseNodes(nodeIndex).model, visualiseNodes(nodeIndex).subskel, visualiseNodes(nodeIndex).padding);
         end
         
@@ -126,7 +126,7 @@ dummyVar = 0;
     %as relative scale, such that its width and height are always 1.
     function [plotW, plotH, plotCoords] = calculatePlotPosition
         plotCoords = zeros(length(visualiseNodes), 2);
-        [levelWidths, maxDepth, nodePositions] = getMaxTreeDimensions(visualiseNodes);
+        [levelWidths, maxDepth, nodePositions] = treeGetWidths(visualiseNodes);
         hPadding = 0.05;
         vPadding = 0.05;
         cellW = 1/max(levelWidths);

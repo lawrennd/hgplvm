@@ -10,11 +10,13 @@ function xyz = acclaim2xyzHierarchical(skel, channels, visIndex)
 % RETURN xyz : the data structure containing the xyz value and rotation
 % matrix for each joint in the skeleton.
 % 
-% COPYRIGHT : Andrew J. Moore, 2006
+% COPYRIGHT : Andrew J. Moore and Neil D. Lawrence, 2006, 2007
 %
 % HGPLVM
 
 global dependencyVisData;
+
+%/~
 % hasDependency = 0;
 % isMaster = 0;
 % dependencyId = 0;
@@ -32,8 +34,8 @@ global dependencyVisData;
 %         end
 %     end
 % end
-
 % if ~hasDependency
+%~/
 rotVal = skel.tree(1).orientation;
 for i = 1:length(skel.tree(1).rotInd)
   rind = skel.tree(1).rotInd(i);
@@ -47,16 +49,17 @@ xyzStruct(1).rot = rotationMatrix(deg2rad(rotVal(1)), ...
                                    skel.tree(1).axisOrder);
 
 xyzStruct(1).xyz = skel.tree(1).offset;
+%/~
 % end
-xyzStruct(1) = checkForDependency(1, visIndex, xyzStruct(1));
+%~/
 
 for i = 1:length(skel.tree(1).posInd)
   pind = skel.tree(1).posInd(i);
   if pind
     xyzStruct(1).xyz(i) = xyzStruct(1).xyz(i) + channels(pind);
   end
-
 end
+xyzStruct(1) = checkForDependency(1, visIndex, xyzStruct(1));
 
 
 for i = 1:length(skel.tree(1).children)
@@ -65,9 +68,9 @@ for i = 1:length(skel.tree(1).children)
 end
 xyz = reshape([xyzStruct(:).xyz], 3, length(skel.tree))';
 
-    function xyzStruct = getChildXyz(skel, xyzStruct, ind, channels)
+  function xyzStruct = getChildXyz(skel, xyzStruct, ind, channels)
 
-    % GETCHILDXYZ 
+  % GETCHILDXYZ 
 
     parent = skel.tree(ind).parent;
     children = skel.tree(ind).children;
@@ -84,7 +87,7 @@ xyz = reshape([xyzStruct(:).xyz], 3, length(skel.tree))';
                           deg2rad(rotVal(2)), ...
                           deg2rad(rotVal(3)), ...
                           skel.tree(ind).order);
-
+    
     torient = rotationMatrix(deg2rad(skel.tree(ind).axis(1)), ...
                              deg2rad(skel.tree(ind).axis(2)), ...
                              deg2rad(skel.tree(ind).axis(3)), ...
@@ -95,46 +98,44 @@ xyz = reshape([xyzStruct(:).xyz], 3, length(skel.tree))';
                                 skel.tree(ind).axisOrder(end:-1:1));
     xyzStruct(ind).rot = torientInv*tdof*torient*xyzStruct(parent).rot;
     xyzStruct(ind).xyz = xyzStruct(parent).xyz + (skel.tree(ind).offset*xyzStruct(ind).rot);
-
+    
     xyzStruct(ind) = checkForDependency(ind, visIndex, xyzStruct(ind));
-
+    
     for n = 1:length(children)
       cind = children(n);
       xyzStruct = getChildXyz(skel, xyzStruct, cind, channels);
     end
     
-    end
+  end
+    
+  function xyzStruct = checkForDependency(ind, visIndex, xyzStruct)
 
-    function xyzStruct = checkForDependency(ind, visIndex, xyzStruct)
-    %CHECKFORDEPENDENCY
+  % CHECKFORDEPENDENCY
+  
+    %/~
     %below prob shite
     %0 = no dependency
     %1 = dependency, is dependent
     %2 = dependency, is master
+    %~/
     for k=1:length(dependencyVisData)
-        if (strcmp(skel.tree(ind).name, dependencyVisData(k).name))
-            %check to see if this is a master or a dependent.
-            if dependencyVisData(k).masterNodeIndex == visIndex
-               dependencyVisData(k).rot = xyzStruct.rot;
-               dependencyVisData(k).xyz = xyzStruct.xyz;
-            else 
-                %hot fix, but question is, why might the dependency master info be
-                %requested before is has been assigned?
-                if ~isempty(dependencyVisData(k).rot)
-                    xyzStruct.rot = dependencyVisData(k).rot;
-                    xyzStruct.xyz = dependencyVisData(k).xyz;
-                end
-            end
+      if (strcmp(skel.tree(ind).name, dependencyVisData(k).name))
+        %check to see if this is a master or a dependent.
+        if dependencyVisData(k).masterNodeIndex == visIndex
+          % It is master.
+          dependencyVisData(k).rot = xyzStruct.rot;
+          dependencyVisData(k).xyz = xyzStruct.xyz;
+        else 
+          %hot fix, but question is, why might the dependency master info be
+          %requested before is has been assigned?
+          if ~isempty(dependencyVisData(k).rot)
+            % It is a dependent
+            xyzStruct.rot = dependencyVisData(k).rot;
+            xyzStruct.xyz = dependencyVisData(k).xyz;
+          end
         end
+      end
     end
-    
-    end
+  end
 
-%     function setMasterPosRot(posRotStruct, dependencyId)
-%     %SETMASTERPOSROT
-%     %copies this joint's postition and rotation data into the global store for
-%     %usage by dependents.
-%     dependencyVisData(dependencyId).xyz = posRotStruct.xyz;
-%     dependencyVisData(dependencyId).rot = posRotStruct.rot;
-%     end
 end

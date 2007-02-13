@@ -5,3 +5,6 @@ dir: .
 ~/mlprojects/hgplvm/matlab/data_35_dependencies.mat
 dir: html
 ~/mlprojects/hgplvm/html/index.html
+~/mlprojects/hgplvm/html/stickHierarchy.png
+~/mlprojects/hgplvm/html/demWalkRun_portrait.png
+~/mlprojects/hgplvm/html/demHighFive_talk.png

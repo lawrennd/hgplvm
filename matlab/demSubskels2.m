@@ -1,6 +1,5 @@
 % DEMSUBSKELS2 Load in the walk1 skeleton and motion capture, then break up into sub skels and learn models on each sub skel.
 
-% HGPLVM
 
 global visualiseInfo;
 
