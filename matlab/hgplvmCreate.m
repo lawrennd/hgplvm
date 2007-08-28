@@ -24,7 +24,11 @@ function model = hgplvmCreate(q, d, Y, options)
 model.type = 'hgplvm';
 model.optimiser = options.optimiser;
 for i = 1:length(options.tree)
-  qNode = q;
+  if ~isfield(options.tree(i), 'q') | isempty(options.tree(i).q)
+    qNode = q;
+  else
+    qNode = options.tree(i).q;
+  end
   if ~isempty(options.tree(i).dataInd)
     dataInd = options.tree(i).dataInd;
   else

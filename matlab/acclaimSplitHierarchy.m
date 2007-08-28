@@ -1,7 +1,7 @@
 function [tree, visualiseNodes, dependencyVisData] = acclaimSplitHierarchy(skel)
 
 % ACCLAIMSPLITHIERARCHY Split an acclaim skeleton into a hierarchy.
-% DESC Runs a given data set with the hierarchical GP-LVM. 
+% DESC Returns an HGPLVM hierarchy that splits an acclaim skeleton structure.
 % ARG skel : The acclaim skeleton structure to split.
 % RETURN tree : the tree structure for the hierarchy split.
 % RETURN visualiseNodes : the data structure needed for
