@@ -1,0 +1,1692 @@
+#LyX 1.4.4 created this file. For more info see http://www.lyx.org/
+\lyxformat 245
+\begin_document
+\begin_header
+\textclass manchesterposter
+\begin_preamble
+
+\end_preamble
+\options color,smalltitle
+\language english
+\inputencoding latin1
+\fontscheme default
+\graphics default
+\paperfontsize default
+\spacing single
+\papersize custom
+\use_geometry true
+\use_amsmath 2
+\cite_engine natbib_numerical
+\use_bibtopic false
+\paperorientation landscape
+\paperwidth 594mm
+\paperheight 841mm
+\leftmargin 5.5cm
+\rightmargin 1cm
+\bottommargin 1cm
+\headheight 0cm
+\headsep 0cm
+\footskip 0cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\bulletLaTeX 0 "\color{gold}\ding{122}\color{foreground}"
+\bulletLaTeX 1 "\color{gold}\ding{229}\color{foreground}"
+\tracking_changes false
+\output_changes true
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Hierarchical Gaussian Process Latent Variable Models
+\end_layout
+
+\begin_layout Author
+Neil D.
+ Lawrence 
+\begin_inset LatexCommand \url{neill@cs.man.ac.uk}
+
+\end_inset
+
+ and Andrew J.
+ Moore 
+\begin_inset LatexCommand \url{A.Moore@dcs.shef.ac.uk}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+begin{multicols}{5}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Overview
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+The Gaussian process latent variable model (GP-LVM) is a powerful approach
+ for probabilistic modelling of high dimensional data through dimensional
+ reduction.
+ In this paper we extend the GP-LVM through hierarchies.
+ A hierarchical model (such as a tree) allows us to express conditional
+ independencies in the data as well as the manifold structure.
+ We first introduce Gaussian process hierarchies through a simple dynamical
+ model, we then extend the approach to a more complex hierarchy which is
+ applied to the visualisation of human motion data sets.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Introduction
+\end_layout
+
+\begin_layout Itemize
+GP-LVM: an effective to probabilistic modelling of high dimensional data,
+ assumes it lies on a manifold.
+\end_layout
+
+\begin_layout Itemize
+An alternative to manifold representations: develop a latent variable model
+ with sparse connectivity.
+\end_layout
+
+\begin_layout Itemize
+Example: tree structured models for images 
+\begin_inset LatexCommand \cite{Williams:tree98,Feng:combining02,Awasthi:image07}
+
+\end_inset
+
+, object recognition 
+\begin_inset LatexCommand \cite{Felzenszwalb:efficient00,Ioffe:mixtures01}
+
+\end_inset
+
+ and human pose estimation 
+\begin_inset LatexCommand \cite{Ramanan:finding03,Sigal:loose04,Lan:beyond05}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Tree structures  offer a convenient way to specify conditional independencies
+ in the model.
+ 
+\end_layout
+
+\begin_layout Itemize
+We will show how we can construct our dimensionality reduction in a hierarchical
+ way, exploiting the advantages of expressing conditional independencies
+ and low dimensional non-linear manifolds.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Probabilistic Dimensional Reduction
+\end_layout
+
+\begin_layout Itemize
+Formulate a latent variable model, with lower latent than data dimension,
+ 
+\begin_inset Formula $q<d$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Latent space prior distribution 
+\begin_inset Formula $p\left(\mathbf{X}\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Mapping from latent (
+\begin_inset Formula $\mathbf{x}_{n}$
+\end_inset
+
+) to data space (
+\begin_inset Formula $\mathbf{y}_{n}$
+\end_inset
+
+)
+\begin_inset Formula \[
+y_{ni}=f_{i}\left(\mathbf{x}_{n};\mathbf{W}\right)+\epsilon_{n},\]
+
+\end_inset
+
+
+\begin_inset Formula $\mathbf{W}$
+\end_inset
+
+ is a matrix of mapping parameters.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+For linear mappings and Gaussian priors: recover probabilistic PCA 
+\begin_inset LatexCommand \cite{Tipping:probpca99}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+For non-linear mapping: unclear how to propagate prior distribution to data
+ space.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Dual Approach
+\end_layout
+
+\begin_layout Itemize
+Place Gaussian Process prior over the mappings.
+\end_layout
+
+\begin_layout Itemize
+Marginalise mappings: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+for linear kernel a dual probabilistic PCA is recovered.
+\end_layout
+
+\begin_layout Itemize
+for non-linear kernel --- a non linear probabilistic PCA.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+GP-LVM
+\end_layout
+
+\begin_layout Itemize
+Several advantages to marginalising the mapping:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\size large
+\emph on
+e.g.
+
+\size default
+\emph default
+ adding dynamical priors in the latent space 
+\begin_inset LatexCommand \cite{Wang:gpdm05,Urtasun:3dpeople06}
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+constraining points in the latent space 
+\begin_inset LatexCommand \cite{Lawrence:backconstraints06}
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Here we further exploit this characteristic, proposing the hierarchical
+ Gaussian process latent variable model
+\end_layout
+
+\begin_layout Itemize
+Introduce it by simple (one layered) hierarchical model for
+\emph on
+ dynamics.
+
+\emph default
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Dynamics via a Simple Hierarchy
+\end_layout
+
+\begin_layout Itemize
+Standard latent space dynamical prior: 
+\begin_inset Formula $p\left(\mathbf{X}\right)=p\left(\mathbf{x}_{1}\right)\prod_{t=2}^{T}p\left(\mathbf{x}_{t}|\mathbf{x}_{t-1}\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Combine a with the GP-LVM likelihood and seek a 
+\emph on
+maximum a posteriori
+\emph default
+ (MAP) solution.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset LatexCommand \citet{Wang:gpdm05}
+
+\end_inset
+
+ 
+\emph on
+autoregressive
+\emph default
+ Gaussian process prior to augment the GP-LVM with dynamics.
+ 
+\end_layout
+
+\begin_layout Itemize
+Consider an 
+\size large
+\emph on
+regressive 
+\emph default
+Gaussian process
+\size default
+ implementation of dynamics.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+We place a Gaussian process prior over the latent space, the inputs are
+ given by the time frame, 
+\begin_inset Formula $\mathbf{t}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Removes requirement for uniform sampling.
+\end_layout
+
+\begin_layout Itemize
+Allows the path in latent space to bifurcate.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Notation
+\end_layout
+
+\begin_layout Itemize
+Motion capture sequence, 
+\begin_inset Formula $\mathbf{Y}=\left[\mathbf{y}_{1,:},\dots,\,\mathbf{y}_{T,:}\right]^{\mbox{T}}\in\Re^{T\times d}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+GP-LVM Likelihood
+\begin_inset Formula \begin{equation}
+p\left(\mathbf{Y}|\mathbf{X}\right)=\prod_{j=1}^{d}N\left(\mathbf{y}_{:,j}|\mathbf{0},\mathbf{K}_{x}\right),\label{eq:gplvmLikelihood}\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Latent variables, 
+\begin_inset Formula $\mathbf{X}=\left[\mathbf{x}_{1},\dots,\,\mathbf{x}_{T}\right]^{\mbox{T}}\in\Re^{T\times q}$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Itemize
+Kernel Matrix
+\begin_inset Formula \[
+k_{x}\left(\mathbf{x}_{i},\mathbf{x}_{j}\right)=\sigma_{\mbox{rbf}}^{2}\exp\left(-\frac{\left\Vert \mathbf{x}_{i}-\mathbf{x}_{j}\right\Vert ^{2}}{2l_{x}^{2}}\right)+\sigma_{\mbox{white}}^{2}\delta_{ij},\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Place a prior over the elements of 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+.
+ 
+\begin_inset Formula \begin{equation}
+p\left(\mathbf{X}|\mathbf{t}\right)=\prod_{i=1}^{q}N\left(\mathbf{x}_{:,i}|\mathbf{0},\mathbf{K}_{t}\right),\label{eq:gpTemporalPrior}\end{equation}
+
+\end_inset
+
+ 
+\begin_inset Formula $\mathbf{t}\in\Re^{T\times1}$
+\end_inset
+
+ is vector of sample times.
+\end_layout
+
+\begin_layout Itemize
+Kernel Matrix
+\begin_inset Formula \[
+k_{t}\left(t_{i},t_{j}\right)=\varsigma_{\mbox{rbf}}^{2}\exp\left(-\frac{\left(t_{i}-t_{j}\right)^{2}}{2l_{t}^{2}}\right)+\varsigma_{\mbox{white}}^{\mbox{2}}.\]
+
+\end_inset
+
+Samples shown below.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Regressive Dynamics
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ../diagrams/demTemporalSamplePaths.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+small 
+\end_layout
+
+\end_inset
+
+Typical sample paths for the RBF covariance function as temporal prior over
+ the latent space.
+\begin_inset LatexCommand \label{fig:Typical-sample-paths}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+More Complex Hierarchies
+\begin_inset LatexCommand \label{sec:complexHierarchies}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+This is a simple hierarchy.
+ A Gaussian process prior on the latent space of a Gaussian process.
+\end_layout
+
+\begin_layout Itemize
+Can we create more complex hierarchies and still find MAP solutions?
+\end_layout
+
+\begin_layout Itemize
+We consider a motion capture example with multiple subjects interacting.
+ 
+\end_layout
+
+\begin_layout Itemize
+Use a simple tree structure to model the subjects.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Subject Interaction
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ../diagrams/twoSubjects.eps
+	lyxscale 40
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+small 
+\end_layout
+
+\end_inset
+
+A simple hierarchy for capturing interaction between two subjects where
+ 
+\begin_inset Formula $\mathbf{Y}_{1}$
+\end_inset
+
+ is the data associated with subject 1, 
+\begin_inset Formula $\mathbf{Y}_{2}$
+\end_inset
+
+ is that of subject 2.
+ Each of these variable sets is then controlled by latent variables, 
+\begin_inset Formula $\mathbf{X}_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{X}_{2}$
+\end_inset
+
+.
+ These latent variables are in turn controlled by 
+\begin_inset Formula $\mathbf{X}_{3}$
+\end_inset
+
+.
+ 
+\begin_inset LatexCommand \label{fig:twoSubjects}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Joint Probability
+\end_layout
+
+\begin_layout Itemize
+The joint probability: 
+\begin_inset Formula \[
+p\left(\mathbf{Y}_{1},\mathbf{Y}_{2}\right)=\int p\left(\mathbf{Y}_{1}|\mathbf{X}_{1}\right)\int p\left(\mathbf{Y}_{2}|\mathbf{X}_{2}\right)\int p\left(\mathbf{X}_{1},\mathbf{X}_{2}|\mathbf{X}_{3}\right)\mbox{d}\mathbf{X}_{3}\mbox{d}\mathbf{X}_{2}\mbox{d}\mathbf{X}_{1}\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Has an intractable integral.
+ 
+\end_layout
+
+\begin_layout Itemize
+We therefore turn to MAP solutions for finding the values of the latent
+ variables.
+ 
+\end_layout
+
+\begin_layout Itemize
+Maximise
+\begin_inset Formula \begin{eqnarray*}
+\log p\left(\mathbf{X}_{1},\mathbf{X}_{2}\mathbf{X}_{3}|\mathbf{Y}_{1},\mathbf{Y}_{2}\right) & = & \log p\left(\mathbf{Y}_{1}|\mathbf{X}_{1}\right)+\log p\left(\mathbf{Y}_{2}|\mathbf{X}_{2}\right)+\log p\left(\mathbf{X}_{1},\mathbf{X}_{2}|\mathbf{X}_{3}\right)\end{eqnarray*}
+
+\end_inset
+
+first two terms for the subjects, third term provides coordination.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Two Interacting Subjects
+\end_layout
+
+\begin_layout Itemize
+MOCAP data
+\begin_inset Foot
+status open
+
+\begin_layout Standard
+\begin_inset LatexCommand \htmlurl{http://mocap.cs.cmu.edu}
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+ consists of two subjects that `high five'.
+ 
+\end_layout
+
+\begin_layout Itemize
+The algorithm for optimisation of the latent variables proceeded as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Initialise each leaf node's latent variable set (
+\begin_inset Formula $\mathbf{X}_{1},\mathbf{X}_{2}$
+\end_inset
+
+) through PCA of corresponding data set (
+\begin_inset Formula $\mathbf{Y}_{1}$
+\end_inset
+
+,
+\begin_inset Formula $\mathbf{Y}_{2}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Initialise the root node's latent variable set (
+\begin_inset Formula $\mathbf{X}_{3}$
+\end_inset
+
+) through PCA of concatenated latent variables of dependents 
+\begin_inset Formula $\left[\mathbf{X}_{1}\,\,\mathbf{X}_{2}\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Optimise jointly the kernel parameters and latent positions 
+\begin_inset Formula $\left(\mathbf{X}_{1},\mathbf{X}_{2},\mathbf{X}_{3}\right)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Used a variable sample rate to capture fast hand movements.
+\end_layout
+
+\begin_layout Itemize
+The variable sample rate presents no problems for our regressive dynamics.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Interacting Subjects
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ../diagrams/demHighFive_icml.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+small 
+\end_layout
+
+\end_inset
+
+High Five example.
+ Two subjects are modelled as they walk towards each other and `high five'.
+ Plot shows the simple hierarchy used to model the data.
+ There is a regressive dynamical prior placed over the latent space of the
+ root node.
+ The root node then controls the two individual subjects.
+ To illustrate the model we have taken points at time (i.e we input these
+ values of 
+\begin_inset Formula $t$
+\end_inset
+
+ into the dynamical model) frames A: 85, B: 114, C:127, D: 141, E: 155,
+ F: 170, G: 190 and H: 215.
+ These points mapped down through the hierarchy and into the data space.
+ In each of the plots of the two subjects, Subject 1 is on the right and
+ Subject 2 is on the left.
+ 
+\begin_inset LatexCommand \label{fig:highFive}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Subject Decomposition
+\end_layout
+
+\begin_layout Itemize
+We can also consider decomposition of a single subject into parts.
+ 
+\end_layout
+
+\begin_layout Itemize
+Most tree based approaches to mocap modelling assume the nodes are observed
+ and the tree reflects skeletal structure.
+\end_layout
+
+\begin_layout Itemize
+Our hierarchical model is more similar to 
+\begin_inset LatexCommand \cite{Williams:tree98}
+
+\end_inset
+
+ where the tree structure is a 
+\emph on
+hierarchy of latent variables
+\emph default
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Skeleton Decomposition
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ../diagrams/stickHierarchy.eps
+	lyxscale 50
+	width 90col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+small 
+\end_layout
+
+\end_inset
+
+Decomposition of skeleton for hierarchical modelling.
+ By separating the component parts of the skeleton in this manner we can
+ model the space of natural motions for each component part and express
+ them independently or jointly.
+\begin_inset LatexCommand \label{fig:skeletonDecomposition}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Decomposition in a Walk and Run
+\end_layout
+
+\begin_layout Itemize
+Data set composed of a walking motion and a running motion.
+\end_layout
+
+\begin_layout Itemize
+Data sub-sampled to 30 frames per second and one cycle of each motion was
+ used.
+ 
+\end_layout
+
+\begin_layout Itemize
+We modelled the subject using the decomposition shown in above.
+\end_layout
+
+\begin_layout Itemize
+To reflect the fact that two different motions were present in the data
+ we constructed a hierarchy with 
+\emph on
+two roots
+\emph default
+.
+ One for the run and one for the walk.
+\end_layout
+
+\begin_layout Itemize
+This construction enables us to express the two motion sequences separately
+ while sharing information lower in the hierarchy.
+\end_layout
+
+\begin_layout Itemize
+We used a periodic kernel for the regressive dynamics.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Decomposition Result
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ../diagrams/demWalkRun_icml.eps
+	lyxscale 70
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+small 
+\end_layout
+
+\end_inset
+
+Combined model of a run and a walk.
+ The skeleton is decomposed as shown in Figure\InsetSpace ~
+
+\begin_inset LatexCommand \ref{fig:skeletonDecomposition}
+
+\end_inset
+
+.
+ In the plots, crosses are latent positions associated with the run and
+ circles are associated with the walk.
+ We have mapped three points from each motion through the hierarchy.
+ Periodic dynamics was used in the latent spaces.
+\begin_inset LatexCommand \label{fig:demRunWalk1}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Summary
+\end_layout
+
+\begin_layout Itemize
+Introduced a a hierarchical version of the GP-LVM
+\end_layout
+
+\begin_layout Itemize
+We use MAP approximations to fit latent variables in all different levels
+ of the hierarchy.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Overfitting
+\end_layout
+
+\begin_layout Itemize
+GP-LVM uses a large number of `parameters' in the form of latent points.
+ Why doesn't it overfit?
+\end_layout
+
+\begin_layout Itemize
+Standard GP-LVM: parameters increase linearly 
+\begin_inset Formula $\frac{q}{d}\times N$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $q<d$
+\end_inset
+
+ overfitting not a problem.
+\end_layout
+
+\begin_layout Itemize
+HGP-LVM: we are adding more latent variables, will we overfit? 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Upper levels of hierarchy only regularise the leaf nodes: if the leaf nodes
+ don't overfit neither will the model.
+\end_layout
+
+\begin_layout Itemize
+By modifying the locations of latent variables we are changing the 
+\emph on
+regularisation
+\emph default
+ of the leaf nodes.
+\end_layout
+
+\begin_layout Itemize
+If unconstrained the model would simply remove the regularisation.
+\end_layout
+
+\begin_layout Itemize
+We counter this potential problem in two ways.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Provided a fixed dynamical prior at the top level.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Constrained the noise variance of each non-leaf Gaussian process to 
+\begin_inset Formula $1\times10^{-6}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Other Hierarchical Models
+\end_layout
+
+\begin_layout Itemize
+The model is not closely related to hierarchical PCA 
+\begin_inset LatexCommand \cite{Bishop:hierarchy98}
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Hierarchical PCA the hierarchy is not a hierarchy of latent variables but
+ a hierarchical decomposition of the component probabilities.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Applications
+\end_layout
+
+\begin_layout Itemize
+Two application areas of promise are:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Tracking: GP-LVM is used as a prior model in tracking, the hierarchy would
+ allow different components to be swapped in as motion changed and `back
+ off'.
+ 
+\end_layout
+
+\begin_layout Itemize
+Animation: animator time is expensive.
+ Through combining the hierarchical model with style based inverse kinematics
+ 
+\begin_inset LatexCommand \cite{Grochow:styleik04}
+
+\end_inset
+
+ these costs could be reduced.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Acknowledgments
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+This work was funded by the EU FP6 PASCAL Network of Excellence under a
+ pump priming grant.
+ The motion capture data used in this project was obtained from 
+\family typewriter
+mocap.cs.cmu.edu
+\family default
+.
+ The database was created with funding from NSF EIA-0196217.
+ We thank Raquel Urtasun for helpful discussions.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout MySection
+Recreating the Experiments
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\size footnotesize
+The source code for re-running all the experiments detailed here is available
+ from 
+\begin_inset LatexCommand \htmlurl{http://www.cs.man.ac.uk/~neill/hgplvm/}
+
+\end_inset
+
+, release 0.1.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Box
+\SpecialChar 
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset LatexCommand \bibtex[abbrvnat_notitle]{lawrence,other,zbooks}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+vspace{0.25cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Standard
+
+
+\backslash
+end{multicols}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
