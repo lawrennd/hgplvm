@@ -16,7 +16,7 @@ function [ax, data] = lvmHierarchicalScatterPlot(model, YLbls);
 % HGPLVM
 
 if isempty(YLbls)
-  symbol = [];
+  symbol = getSymbols(1);
 else
   symbol = getSymbols(size(YLbls,2));
 end
