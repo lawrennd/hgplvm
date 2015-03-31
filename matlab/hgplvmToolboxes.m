@@ -1,7 +1,7 @@
 % HGPLVMTOOLBOXES Load in the relevant toolboxes for hgplvm.
 
 importLatest('netlab');
-importLatest('GPmat')
+importTool('GPmat')
 % importLatest('prior');
 % importLatest('optimi');
 % importLatest('datasets');
