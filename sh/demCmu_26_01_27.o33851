@@ -1,0 +1,118 @@
+Warning: no access to tty (Bad file descriptor).
+Thus no job control in this shell.
+Warning: Unable to open display , MATLAB is starting without a display.
+  You will not be able to display graphics on the screen.
+
+                              < M A T L A B >
+                  Copyright 1984-2004 The MathWorks, Inc.
+                  Version 7.0.1.24704 (R14) Service Pack 1
+                             September 13, 2004
+
+ 
+  To get started, type one of these: helpwin, helpdesk, or demo.
+  For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> Warning: Could not find an exact (case-sensitive) match for 'fileSep'. /usr/local/matlab-7.0r14/toolbox/matlab/iofun/filesep.m is a case-insensitive match and will be used instead.  You can improve the performance of your code by using exact name matches and we therefore recommend that you update your usage accordingly.  Alternatively, you can disable this warning using warning('off','MATLAB:dispatcher:InexactMatch').
+> In <a href="error:/home/nl/mlprojects/hgplvm/matlab/demCmu_26_01_27.m,9,1">demCmu_26_01_27 at 9</a>
+Cycle    1  Error 799613.322648  Scale 7.795497e+04
+Cycle    2  Error 577887.081057  Scale 3.118199e+05
+Cycle    3  Error 464625.920340  Scale 1.559099e+05
+Cycle    4  Error 348644.606509  Scale 7.795497e+04
+Cycle    5  Error 266885.687809  Scale 3.897748e+04
+Cycle    6  Error 211992.761474  Scale 1.948874e+04
+Cycle    7  Error 154787.618493  Scale 9.744371e+03
+Cycle    8  Error 114326.188632  Scale 4.872185e+03
+Cycle    9  Error 81566.495327  Scale 2.436093e+03
+Cycle   10  Error 62739.756474  Scale 1.218046e+03
+Cycle   11  Error 52255.572667  Scale 6.090232e+02
+Cycle   12  Error 44875.294719  Scale 3.045116e+02
+Cycle   13  Error 39441.094121  Scale 1.522558e+02
+Cycle   14  Error 36125.673927  Scale 7.612790e+01
+Cycle   15  Error 32614.787682  Scale 3.806395e+01
+Cycle   16  Error 30681.242660  Scale 1.903197e+01
+Cycle   17  Error 29066.783493  Scale 9.515987e+00
+Cycle   18  Error 27806.002985  Scale 4.757993e+00
+Cycle   19  Error 26700.900459  Scale 2.378997e+00
+Cycle   20  Error 25635.322755  Scale 1.189498e+00
+Cycle   21  Error 24759.606443  Scale 5.947492e-01
+Cycle   22  Error 23941.021371  Scale 2.973746e-01
+Cycle   23  Error 23226.656877  Scale 1.486873e-01
+Cycle   24  Error 22545.216804  Scale 7.434365e-02
+Cycle   25  Error 21970.407670  Scale 3.717182e-02
+Cycle   26  Error 21352.663495  Scale 1.858591e-02
+Cycle   27  Error 20737.996987  Scale 9.292956e-03
+Cycle   28  Error 20088.049852  Scale 4.646478e-03
+Cycle   29  Error 19406.282070  Scale 2.323239e-03
+Cycle   30  Error 18759.619229  Scale 1.161619e-03
+Cycle   31  Error 18249.947682  Scale 5.808097e-04
+Cycle   32  Error 17821.404343  Scale 2.904049e-04
+Cycle   33  Error 17446.789702  Scale 1.452024e-04
+Cycle   34  Error 17200.547945  Scale 7.260122e-05
+Cycle   35  Error 16994.422767  Scale 3.630061e-05
+Cycle   36  Error 16655.826431  Scale 1.815030e-05
+Cycle   37  Error 16297.553751  Scale 9.075152e-06
+Cycle   38  Error 15998.623600  Scale 4.537576e-06
+Cycle   39  Error 15708.138212  Scale 2.268788e-06
+Cycle   40  Error 15466.771931  Scale 1.134394e-06
+Cycle   41  Error 15231.449511  Scale 5.671970e-07
+Cycle   42  Error 15017.967354  Scale 2.835985e-07
+Cycle   43  Error 14805.042918  Scale 1.417993e-07
+Cycle   44  Error 14569.513972  Scale 7.089963e-08
+Cycle   45  Error 14366.896239  Scale 3.544981e-08
+Cycle   46  Error 14139.309784  Scale 1.772491e-08
+Cycle   47  Error 13968.668494  Scale 8.862453e-09
+Cycle   48  Error 13809.795306  Scale 4.431227e-09
+Cycle   49  Error 13641.116432  Scale 2.215613e-09
+Cycle   50  Error 13510.153722  Scale 1.107807e-09
+Cycle   51  Error 13384.938863  Scale 5.539033e-10
+Cycle   52  Error 13276.796007  Scale 2.769517e-10
+Cycle   53  Error 13159.682811  Scale 1.384758e-10
+Cycle   54  Error 13044.359986  Scale 6.923792e-11
+Cycle   55  Error 12928.525345  Scale 3.461896e-11
+Cycle   56  Error 12837.163778  Scale 1.730948e-11
+Cycle   57  Error 12755.737775  Scale 8.654740e-12
+Cycle   58  Error 12656.651490  Scale 4.327370e-12
+Cycle   59  Error 12572.665690  Scale 2.163685e-12
+Cycle   60  Error 12496.769955  Scale 1.081842e-12
+Cycle   61  Error 12412.687496  Scale 5.409212e-13
+Cycle   62  Error 12345.295273  Scale 2.704606e-13
+Cycle   63  Error 12277.063729  Scale 1.352303e-13
+Cycle   64  Error 12207.817665  Scale 6.761515e-14
+Cycle   65  Error 12148.254401  Scale 3.380758e-14
+Cycle   66  Error 12079.751687  Scale 1.690379e-14
+Cycle   67  Error 11998.518676  Scale 8.451894e-15
+Cycle   68  Error 11922.255884  Scale 4.225947e-15
+Cycle   69  Error 11852.274700  Scale 2.112974e-15
+Cycle   70  Error 11790.829223  Scale 1.056487e-15
+Cycle   71  Error 11728.932179  Scale 1.000000e-15
+Cycle   72  Error 11646.822265  Scale 1.000000e-15
+Cycle   73  Error 11571.882157  Scale 1.000000e-15
+Cycle   74  Error 11494.605250  Scale 1.000000e-15
+Cycle   75  Error 11437.640125  Scale 1.000000e-15
+Cycle   76  Error 11376.190005  Scale 1.000000e-15
+Cycle   77  Error 11303.953272  Scale 1.000000e-15
+Cycle   78  Error 11220.304151  Scale 1.000000e-15
+Cycle   79  Error 11137.384630  Scale 1.000000e-15
+Cycle   80  Error 11074.905059  Scale 1.000000e-15
+Cycle   81  Error 11006.982511  Scale 1.000000e-15
+Cycle   82  Error 10936.675996  Scale 1.000000e-15
+Cycle   83  Error 10856.443289  Scale 1.000000e-15
+Cycle   84  Error 10786.348806  Scale 1.000000e-15
+Cycle   85  Error 10724.544994  Scale 1.000000e-15
+Cycle   86  Error 10669.736226  Scale 1.000000e-15
+Cycle   87  Error 10606.060963  Scale 1.000000e-15
+Cycle   88  Error 10537.640856  Scale 1.000000e-15
+Cycle   89  Error 10472.763917  Scale 1.000000e-15
+Cycle   90  Error 10400.485046  Scale 1.000000e-15
+Cycle   91  Error 10353.811898  Scale 1.000000e-15
+Cycle   92  Error 10306.336314  Scale 1.000000e-15
+Cycle   93  Error 10256.385080  Scale 1.000000e-15
+Cycle   94  Error 10205.852246  Scale 1.000000e-15
+Cycle   95  Error 10138.881936  Scale 1.000000e-15
+Cycle   96  Error 10081.737718  Scale 1.000000e-15
+Cycle   97  Error 10031.286280  Scale 1.000000e-15
+Cycle   98  Error 9984.798925  Scale 1.000000e-15
+Cycle   99  Error 9939.795937  Scale 1.000000e-15
+Cycle  100  Error 9891.359217  Scale 1.000000e-15
+Maximum number of iterations has been exceeded
+>> 
