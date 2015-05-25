@@ -1,0 +1,40 @@
+Files not tagged as in toolbox: 
+demCmu12_01_1.m
+demCmu35.m
+demCmu35_26_1.m
+demCmu_26_01_27.m
+demOil1001.m
+demOil1002.m
+demSubskels2.m
+demWalkRunWave1.m
+demWalkRunWave2.m
+fgplvmObjectiveGradient.m
+hierarchicalLatentSpaceHandler.m
+hierarchicalModelLearner.m
+skelGetSubskel.m
+skelHierarchicalSeparate.m
+
+Files not commented:
+demCmu35.m
+demCmu_26_01_27.m
+demOil1001.m
+demOil1002.m
+demWalkRunWave1.m
+demWalkRunWave2.m
+skelHierarchicalSeparate.m
+
+Files not in CVS:
+demCmu12_01_1.m
+demCmu35.m
+demCmu35_26_1.m
+demCmu_26_01_27.m
+demOil1001.m
+demOil1002.m
+demStool1.m
+demWalkRunWave1.m
+demWalkRunWave2.m
+fgplvmObjectiveGradient.m
+plotSubSkel.m
+
+Dependent toolbox problems
+File Comments Removed
