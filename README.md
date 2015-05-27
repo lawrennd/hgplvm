@@ -43,12 +43,15 @@ Two examples of hierarchical models are provided with the code, the first is an 
 A visualisation of the result, including points that have been propagated through the hierarchy is given below.
 
 ![](demHighFive_talk.png) 
- Joint visualisation of the two subjects that 'high five'. The points A, B, C, D, E, F, G and H have been propagated through the hierarchy and are shown on the right. Grey scale visualisations in the latent space have not been shown to keep the smaller plots clear.
+
+*Joint visualisation of the two subjects that 'high five'. The points A, B, C, D, E, F, G and H have been propagated through the hierarchy and are shown on the right. Grey scale visualisations in the latent space have not been shown to keep the smaller plots clear.*
 
 A second example involves a subject modelled running and walking. In this case the separate limbs of the subject are split into a hierarchy as shown below.
 
 ![](stickHierarchy.png) 
-Hierarchical decomposition of the skeleton. The limbs and abdomen are leaf nodes, behind which we build a hierarchical structure.
+
+*Hierarchical decomposition of the skeleton. The limbs and abdomen are leaf nodes, behind which we build a hierarchical structure.*
+
 This example can be reconstructed with
 
 ```matlab
@@ -57,8 +60,9 @@ This example can be reconstructed with
 
 Results of applying the hierarchical structure to a combined data set of a run and a walk, using two root nodes, one for the run and one for the walk, are shown below.
 
-![](demWalkRun_portrait.png) 
-Visualisation of a walk and run jointly using hierarchical structures. Again several points have been propagated through the hierarchy.
+![](demWalkRun_portrait.png)
+
+*Visualisation of a walk and run jointly using hierarchical structures. Again several points have been propagated through the hierarchy.*
 
 Page updated on Wed Feb 14 08:50:14 2007
 
