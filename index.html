@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>hgplvm by lawrennd</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>hgplvm</h1>
+        <p>Hierarchical GP-LVM code in MATLAB</p>
+
+        <p class="view"><a href="https://github.com/lawrennd/hgplvm">View the Project on GitHub <small>lawrennd/hgplvm</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/lawrennd/hgplvm/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/lawrennd/hgplvm/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/lawrennd/hgplvm">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="hierarchical-gp-lvm-software" class="anchor" href="#hierarchical-gp-lvm-software" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hierarchical GP-LVM Software</h1>
+
+<p>This page describes examples of how to use the hierarchical Gaussian process latent variable model Software (HGPLVM).</p>
+
+<p>The hierarchical GP-LVM allows you to create hierarchies of Gaussian process models. With the toolbox two hierarchy examples are given below.</p>
+
+<p>The HGPLVM software can be downloaded here.</p>
+
+<h2>
+<a id="release-information" class="anchor" href="#release-information" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release Information</h2>
+
+<p>Current release is 0.1.</p>
+
+<p>As well as downloading the HGPLVM software you need to obtain the toolboxes specified below.</p>
+
+<table>
+<thead>
+<tr>
+<th><strong>Toolbox</strong></th>
+<th><strong>Version</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/netlab/downloadFiles/vrs3p3">NETLAB</a></td>
+<td>3.3</td>
+</tr>
+<tr>
+<td><a href="/prior/downloadFiles/vrs0p131">PRIOR</a></td>
+<td>0.131</td>
+</tr>
+<tr>
+<td><a href="/optimi/downloadFiles/vrs0p132">OPTIMI</a></td>
+<td>0.132</td>
+</tr>
+<tr>
+<td><a href="/datasets/downloadFiles/vrs0p131">DATASETS</a></td>
+<td>0.131</td>
+</tr>
+<tr>
+<td><a href="/ndlutil/downloadFiles/vrs0p157">NDLUTIL</a></td>
+<td>0.157</td>
+</tr>
+<tr>
+<td><a href="/mltools/downloadFiles/vrs0p126">MLTOOLS</a></td>
+<td>0.126</td>
+</tr>
+<tr>
+<td><a href="/mocap/downloadFiles/vrs0p132">MOCAP</a></td>
+<td>0.132</td>
+</tr>
+<tr>
+<td><a href="/kern/downloadFiles/vrs0p166">KERN</a></td>
+<td>0.166</td>
+</tr>
+<tr>
+<td><a href="/gp/downloadFiles/vrs0p12">GP</a></td>
+<td>0.12</td>
+</tr>
+<tr>
+<td><a href="/fgplvm/downloadFiles/vrs0p151">FGPLVM</a></td>
+<td>0.151</td>
+</tr>
+</tbody>
+</table>
+
+<h4>
+<a id="version-0001" class="anchor" href="#version-0001" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version 0.001</h4>
+
+<p>This is preliminary work released as a placeholder.</p>
+
+<h3>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h3>
+
+<p>Two examples of hierarchical models are provided with the code, the first is an example where two interacting subjects are jointly model. Two subjects from the <a href="http://mocap.cs.cmu.edu">CMU Mocap data base</a> approach each other and 'high five'. The hierarchy models the subjects separately and jointly. It can be run with the command</p>
+
+<div class="highlight highlight-matlab"><pre><span class="pl-k">&gt;&gt; </span>demHighFive1 </pre></div>
+
+<p>A visualisation of the result, including points that have been propagated through the hierarchy is given below.</p>
+
+<p><img src="demHighFive_talk.png" alt=""> </p>
+
+<p><em>Joint visualisation of the two subjects that 'high five'. The points A, B, C, D, E, F, G and H have been propagated through the hierarchy and are shown on the right. Grey scale visualisations in the latent space have not been shown to keep the smaller plots clear.</em></p>
+
+<p>A second example involves a subject modelled running and walking. In this case the separate limbs of the subject are split into a hierarchy as shown below.</p>
+
+<p><img src="stickHierarchy.png" alt=""> </p>
+
+<p><em>Hierarchical decomposition of the skeleton. The limbs and abdomen are leaf nodes, behind which we build a hierarchical structure.</em></p>
+
+<p>This example can be reconstructed with</p>
+
+<div class="highlight highlight-matlab"><pre><span class="pl-k">&gt;&gt; </span>demWalkRun1 </pre></div>
+
+<p>Results of applying the hierarchical structure to a combined data set of a run and a walk, using two root nodes, one for the run and one for the walk, are shown below.</p>
+
+<p><img src="demWalkRun_portrait.png" alt=""></p>
+
+<p><em>Visualisation of a walk and run jointly using hierarchical structures. Again several points have been propagated through the hierarchy.</em></p>
+
+<p>Page updated on Wed Feb 14 08:50:14 2007</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/lawrennd">lawrennd</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-62968536-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
