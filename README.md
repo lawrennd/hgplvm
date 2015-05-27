@@ -15,18 +15,18 @@ Current release is 0.1.
 
 As well as downloading the HGPLVM software you need to obtain the toolboxes specified below.
 
-| **Toolbox**                                                                 | **Version** |
-|-----------------------------------------------------------------------------|-------------|
-| [NETLAB](http://ml.sheffield.ac.uk/~neil/netlab/downloadFiles/vrs3p3)       | 3.3         |
-| [PRIOR](http://ml.sheffield.ac.uk/~neil/prior/downloadFiles/vrs0p131)       | 0.131       |
-| [OPTIMI](http://ml.sheffield.ac.uk/~neil/optimi/downloadFiles/vrs0p132)     | 0.132       |
-| [DATASETS](http://ml.sheffield.ac.uk/~neil/datasets/downloadFiles/vrs0p131) | 0.131       |
-| [NDLUTIL](http://ml.sheffield.ac.uk/~neil/ndlutil/downloadFiles/vrs0p157)   | 0.157       |
-| [MLTOOLS](http://ml.sheffield.ac.uk/~neil/mltools/downloadFiles/vrs0p126)   | 0.126       |
-| [MOCAP](http://ml.sheffield.ac.uk/~neil/mocap/downloadFiles/vrs0p132)       | 0.132       |
-| [KERN](http://ml.sheffield.ac.uk/~neil/kern/downloadFiles/vrs0p166)         | 0.166       |
-| [GP](http://ml.sheffield.ac.uk/~neil/gp/downloadFiles/vrs0p12)              | 0.12        |
-| [FGPLVM](http://ml.sheffield.ac.uk/~neil/fgplvm/downloadFiles/vrs0p151)     | 0.151       |
+| **Toolbox**                                  | **Version** |
+|----------------------------------------------|-------------|
+| [NETLAB](/netlab/downloadFiles/vrs3p3)       | 3.3         |
+| [PRIOR](/prior/downloadFiles/vrs0p131)       | 0.131       |
+| [OPTIMI](/optimi/downloadFiles/vrs0p132)     | 0.132       |
+| [DATASETS](/datasets/downloadFiles/vrs0p131) | 0.131       |
+| [NDLUTIL](/ndlutil/downloadFiles/vrs0p157)   | 0.157       |
+| [MLTOOLS](/mltools/downloadFiles/vrs0p126)   | 0.126       |
+| [MOCAP](/mocap/downloadFiles/vrs0p132)       | 0.132       |
+| [KERN](/kern/downloadFiles/vrs0p166)         | 0.166       |
+| [GP](/gp/downloadFiles/vrs0p12)              | 0.12        |
+| [FGPLVM](/fgplvm/downloadFiles/vrs0p151)     | 0.151       |
 
 #### Version 0.001
 
